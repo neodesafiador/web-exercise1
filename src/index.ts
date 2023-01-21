@@ -1,7 +1,7 @@
 import { merge01 } from './merge-array1';
 import { merge02 } from './merge-array2';
 import { checkWord } from './wordle';
-import { calculateVotes, calcPerVotes, totalPrecinct, countVotes } from './elections';
+import { calculateVotes, round, calcPerVotes, totalPrecinct } from './elections';
 
 // codes for Merging Arrays - part 1 -
 const array1: Array<number> = [4, 5, 23, 18, 9, -5, 31];
@@ -59,12 +59,13 @@ for (let i = 0; i < candidates.length; i += 1) {
   console.log(`${candidates[i].name} -- ${totalPerCand[i]} votes -- ${pctPerCand[i]}%`);
 }
 
-// let countVote = 0;
+const precinctVotes: Array<number> = totalPrecinct(candidates, candidates.length);
+const votePercent = [];
 
-// for (let i = 0; i < candidates.length; i += 1) {
-//   countVote = countVotes(candidates[i]);
-//   console.log(`${candidates[i].name}:\n`);
-//   for (let j = 0; j < countVote; i += 1) {
-//     console.log(`  Precinct ${i} -- `);
-//   }
-// }
+for (let i = 0; i < candidates.length; i += 1) {
+  console.log(`${candidates[i].name}:\n`);
+  for (let j = 0; j < candidates[0].votes.length; j += 1) {
+    votePercent[j] = round((candidates[i].votes[j] / precinctVotes[j]) * 100);
+    console.log(`  Precinct ${j + 1} -- ${votePercent[j]}%`);
+  }
+}

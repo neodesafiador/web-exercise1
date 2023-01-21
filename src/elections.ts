@@ -25,20 +25,14 @@ function calcPerVotes(totalVotesPerCand: Array<number>, numOfApp: number): Array
 
 function totalPrecinct(precinct: Array<Candidate>, numOfApp: number): Array<number> {
   const totalPre: Array<number> = [];
-  for (let i = 0; i < precinct[i].votes.length; i += 1) {
+  for (let i = 0; i < precinct[0].votes.length; i += 1) {
+    let tempPre = 0;
     for (let j = 0; j < numOfApp; j += 1) {
-      totalPre[i] += precinct[j].votes[i];
+      tempPre += precinct[j].votes[i];
     }
+    totalPre.push(tempPre);
   }
   return totalPre;
 }
 
-function countVotes(applicant: Candidate): number {
-  let count = 0;
-  for (let i = 0; i < applicant.votes.length; i += 1) {
-    count += 1;
-  }
-  return count;
-}
-
-export { calculateVotes, calcPerVotes, totalPrecinct, countVotes };
+export { calculateVotes, round, calcPerVotes, totalPrecinct };
