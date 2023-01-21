@@ -1,3 +1,4 @@
+// Calculate the total number of votes
 function calculateVotes(applicant: Candidate): number {
   let totalVotes = 0;
   for (let i = 0; i < applicant.votes.length; i += 1) {
@@ -6,6 +7,8 @@ function calculateVotes(applicant: Candidate): number {
   return totalVotes;
 }
 
+// Calculate the total number of votes received by each candidate and
+// the percent of the total votes cast
 function calcPerVotes(totalVotesPerCand: Array<number>, numOfApp: number): Array<number> {
   let totalVotes = 0;
   const percentVotesPerCand: Array<number> = [];
@@ -20,6 +23,7 @@ function calcPerVotes(totalVotesPerCand: Array<number>, numOfApp: number): Array
   return percentVotesPerCand;
 }
 
+// Calculate the total number of votes for each precinct
 function totalPrecinct(precinct: Array<Candidate>, numOfApp: number): Array<number> {
   const totalPre: Array<number> = [];
   for (let i = 0; i < precinct[0].votes.length; i += 1) {
@@ -29,14 +33,17 @@ function totalPrecinct(precinct: Array<Candidate>, numOfApp: number): Array<numb
     }
     totalPre.push(tempPre);
   }
+
   return totalPre;
 }
 
+// Calculate the amount spent per vote by each candidate
 function calcSpent(applicant: Array<Candidate>, totalPerCand: Array<number>): Array<number> {
   const spentArr: Array<number> = [];
   for (let i = 0; i < applicant.length; i += 1) {
     spentArr[i] = applicant[i].funding / totalPerCand[i];
   }
+
   return spentArr;
 }
 
